@@ -16,7 +16,7 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+      serverLogin(response);
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -83,6 +83,16 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
+  }
+
+  function serverLogin(response) {
+    var accessToken = response.authResponse.accessToken;
+    var userID = response.authResponse.userID; // 多分使わない
+    var signedRequest = response.authResponse.signedRequest; // facebook のサーバか送られてきていることを示す（ごにょると本物かわかる）
+    /**
+     * TODO: サーバに accessToken を渡してそのアクセトークンからごにょる
+     * accessToken じゃなくて response をそのまま渡せばいい、その後サーバ側でごにょる
+     */
   }
 </script>
 
