@@ -94,6 +94,15 @@
      * accessToken じゃなくて response をそのまま渡せばいい、その後サーバ側でごにょる
      */
   }
+
+  function logout() {
+    FB.logout(function(response) {
+      console.log(response);
+      console.log('logout');
+      checkLoginState();
+      // TODO: サーバにログアウトしたことを知らせる？
+    });
+  }
 </script>
 
 <!--
